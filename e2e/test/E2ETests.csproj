@@ -25,10 +25,6 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7" />
     <PackageReference Include="System.Diagnostics.Tracing" Version="4.3.0" />
     <PackageReference Include="WindowsAzure.Storage" Version="9.3.2" />
-  </ItemGroup>
-
-  <!-- NetCore and .NET 4.7.2 -->
-  <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Storage.Blob" Version="11.1.3" />
     <PackageReference Include="Azure.Identity" Version="1.3.0" />
   </ItemGroup>
@@ -42,10 +38,10 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(AZURE_IOT_LOCALPACKAGES)' != '' ">
-    <PackageReference Include="Microsoft.Azure.Devices" Version="2.*" />
-    <PackageReference Include="Microsoft.Azure.Devices.Authentication" Version="2.*" />
-    <PackageReference Include="Microsoft.Azure.Devices.Client" Version="2.*" />
-    <PackageReference Include="Microsoft.Azure.Devices.Provisioning.Client" Version="2.*" />
-    <PackageReference Include="Microsoft.Azure.Devices.Provisioning.Service" Version="2.*" />
+    <PackageReference Include="Microsoft.Azure.Devices" Version="2.0.0-preview001" />
+    <PackageReference Include="Microsoft.Azure.Devices.Authentication" Version="2.0.0-preview001" />
+    <PackageReference Include="Microsoft.Azure.Devices.Client" Version="2.0.0-preview001" />
+    <PackageReference Include="Microsoft.Azure.Devices.Provisioning.Client" Version="2.0.0-preview001" />
+    <PackageReference Include="Microsoft.Azure.Devices.Provisioning.Service" Version="2.0.0-preview001" />
   </ItemGroup>
 </Project>
