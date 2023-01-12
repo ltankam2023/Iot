@@ -218,7 +218,7 @@ namespace Microsoft.Azure.Devices.Provisioning.Service
                     if (response.StatusCode >= HttpStatusCode.Ambiguous)
                     {
                         throw new ProvisioningServiceException(
-                            $"{response.ErrorMessage}:{response.Body}",
+                            $"{response.ErrorMessage}:{responseBody.Message}",
                             response.StatusCode,
                             responseBody.ErrorCode,
                             responseBody.TrackingId,

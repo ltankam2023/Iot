@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -88,7 +89,14 @@ namespace Microsoft.Azure.Devices.Provisioning.Service.Samples
                     {
                         Console.WriteLine($"Enrollment group to be deleted: {enrollment.EnrollmentGroupId}");
                         s_enrollmentGroupsDeleted++;
-                        await _provisioningServiceClient.EnrollmentGroups.DeleteAsync(enrollment.EnrollmentGroupId);
+                        try
+                        {
+                            await _provisioningServiceClient.EnrollmentGroups.DeleteAsync($"{enrollment.EnrollmentGroupId}_1");
+                        }
+                        catch (ProvisioningServiceException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+                        {
+                            Console.WriteLine($"The enrollment group {enrollment.EnrollmentGroupId} has already been deleted in parallel by a separate process.");
+                        }
                     }
                 }
             }
