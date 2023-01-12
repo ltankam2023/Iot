@@ -132,7 +132,7 @@ namespace Microsoft.Azure.Devices.Provisioning.Service
                 
                 if (!string.IsNullOrWhiteSpace(eTag.ToString()))
                 {
-                    string escapedETag = EscapeETag(eTag.ToString());
+                    string escapedETag = eTag.ToString("H");
                     msg.Headers.IfMatch.Add(new EntityTagHeaderValue(escapedETag));
                 }
 
@@ -233,27 +233,6 @@ namespace Microsoft.Azure.Devices.Provisioning.Service
                         false);
                 }
             }
-        }
-
-        // ETag values other than "*" need to be wrapped in escaped quotes if they are not
-        // already.
-        private static string EscapeETag(string eTag)
-        {
-            var escapedETagBuilder = new StringBuilder();
-
-            if (!eTag.StartsWith("\"", StringComparison.OrdinalIgnoreCase))
-            {
-                escapedETagBuilder.Append('"');
-            }
-
-            escapedETagBuilder.Append(eTag);
-
-            if (!eTag.EndsWith("\"", StringComparison.OrdinalIgnoreCase))
-            {
-                escapedETagBuilder.Append('"');
-            }
-
-            return escapedETagBuilder.ToString();
         }
 
         /// <summary>
